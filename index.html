@@ -1,0 +1,1363 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Ishu — A Little Universe</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#01030a;
+    color:#fff;
+    font-family:Inter,sans-serif;
+    overflow-x:hidden;
+}
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+.space{
+    position:fixed;
+    inset:0;
+    z-index:-20;
+    background:
+    radial-gradient(circle at 50% 25%,rgba(30,110,255,.18),transparent 28%),
+    radial-gradient(circle at 20% 80%,rgba(0,70,190,.13),transparent 35%),
+    linear-gradient(180deg,#01030a,#020817,#01030a);
+}
+
+.aurora{
+    position:fixed;
+    width:700px;
+    height:700px;
+    left:50%;
+    top:25%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    background:rgba(25,105,255,.08);
+    filter:blur(110px);
+    animation:aurora 9s ease-in-out infinite alternate;
+    z-index:-15;
+}
+
+@keyframes aurora{
+
+    from{
+        transform:translate(-50%,-50%) scale(.75);
+        opacity:.35;
+    }
+
+    to{
+        transform:translate(-50%,-50%) scale(1.25);
+        opacity:1;
+    }
+}
+
+/* =====================================================
+   STARS
+===================================================== */
+
+.star{
+    position:fixed;
+    width:2px;
+    height:2px;
+    border-radius:50%;
+    background:white;
+    box-shadow:0 0 8px #58aaff;
+    z-index:-10;
+    animation:twinkle 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle{
+
+    from{
+        opacity:.15;
+        transform:scale(.5);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1.5);
+    }
+}
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+.particle{
+    position:fixed;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:#5cb5ff;
+    box-shadow:0 0 12px #2b8dff;
+    z-index:-5;
+    pointer-events:none;
+    animation:particleMove linear infinite;
+}
+
+@keyframes particleMove{
+
+    0%{
+        transform:translateY(110vh) translateX(0);
+        opacity:0;
+    }
+
+    15%{
+        opacity:.7;
+    }
+
+    85%{
+        opacity:.7;
+    }
+
+    100%{
+        transform:translateY(-15vh) translateX(90px);
+        opacity:0;
+    }
+}
+
+/* =====================================================
+   SHOOTING STARS
+===================================================== */
+
+.shooting{
+    position:fixed;
+    width:150px;
+    height:1px;
+    background:linear-gradient(90deg,transparent,#fff,#55aaff);
+    transform:rotate(-35deg);
+    opacity:0;
+    z-index:-5;
+    animation:shoot 8s linear infinite;
+}
+
+@keyframes shoot{
+
+    0%{
+        left:110%;
+        top:10%;
+        opacity:0;
+    }
+
+    5%{
+        opacity:1;
+    }
+
+    18%{
+        left:-20%;
+        top:38%;
+        opacity:0;
+    }
+
+    100%{
+        opacity:0;
+    }
+}
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+#intro{
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    transition:1.5s;
+}
+
+.intro-content{
+    width:min(850px,90%);
+    animation:introIn 2.2s ease;
+}
+
+@keyframes introIn{
+
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.kicker{
+    color:#72baff;
+    font-size:10px;
+    letter-spacing:6px;
+    text-transform:uppercase;
+    margin-bottom:25px;
+}
+
+.logo-name{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(85px,14vw,160px);
+    font-weight:300;
+    line-height:.8;
+
+    background:linear-gradient(
+        120deg,
+        #fff,
+        #9dd5ff,
+        #3c8fff,
+        #fff
+    );
+
+    background-size:250%;
+
+    -webkit-background-clip:text;
+    color:transparent;
+
+    animation:nameShine 5s linear infinite;
+}
+
+@keyframes nameShine{
+
+    to{
+        background-position:250%;
+    }
+}
+
+.intro-sub{
+    margin-top:35px;
+    color:#9eafc8;
+    line-height:2;
+    font-size:15px;
+    font-weight:300;
+}
+
+.start{
+    margin-top:45px;
+    padding:16px 35px;
+    border-radius:50px;
+
+    background:rgba(30,110,230,.08);
+
+    border:1px solid rgba(100,180,255,.4);
+
+    color:white;
+
+    letter-spacing:2px;
+
+    font-size:11px;
+
+    cursor:pointer;
+
+    transition:.4s;
+
+    backdrop-filter:blur(15px);
+}
+
+.start:hover{
+
+    transform:translateY(-5px);
+
+    background:rgba(50,130,255,.2);
+
+    box-shadow:
+    0 0 30px rgba(50,140,255,.3);
+}
+
+.scroll{
+
+    position:absolute;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
+
+    color:#55708f;
+
+    font-size:9px;
+
+    letter-spacing:4px;
+
+    animation:scrollPulse 2s infinite;
+}
+
+@keyframes scrollPulse{
+
+    0%,100%{opacity:.25}
+
+    50%{opacity:1}
+}
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+#universe{
+    display:none;
+}
+
+.section{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:100px 25px;
+}
+
+.content{
+
+    width:min(950px,100%);
+}
+
+.title{
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:clamp(48px,7vw,90px);
+
+    font-weight:300;
+
+    line-height:1;
+}
+
+.text{
+
+    max-width:650px;
+
+    margin:25px auto 0;
+
+    color:#9eafc8;
+
+    font-size:15px;
+
+    line-height:2;
+
+    font-weight:300;
+}
+
+/* =====================================================
+   BUTTERFLY
+===================================================== */
+
+.butterfly-wrap{
+
+    height:150px;
+
+    position:relative;
+
+    margin-bottom:25px;
+}
+
+.butterfly{
+
+    position:absolute;
+
+    width:90px;
+
+    height:90px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    animation:butterflyFloat 4s ease-in-out infinite;
+}
+
+.wing{
+
+    position:absolute;
+
+    width:42px;
+
+    height:65px;
+
+    background:linear-gradient(
+        135deg,
+        #d7efff,
+        #4d9cff,
+        #1755c7
+    );
+
+    box-shadow:0 0 25px rgba(50,150,255,.5);
+
+}
+
+.left-wing{
+
+    left:2px;
+
+    top:10px;
+
+    border-radius:70% 25% 70% 25%;
+
+    transform:rotate(25deg);
+}
+
+.right-wing{
+
+    right:2px;
+
+    top:10px;
+
+    border-radius:25% 70% 25% 70%;
+
+    transform:rotate(-25deg);
+}
+
+.body{
+
+    position:absolute;
+
+    width:7px;
+
+    height:65px;
+
+    left:42px;
+
+    top:14px;
+
+    background:#bde7ff;
+
+    border-radius:10px;
+
+    z-index:3;
+}
+
+@keyframes butterflyFloat{
+
+    0%,100%{
+
+        transform:translateX(-50%) translateY(0) rotate(-2deg);
+
+    }
+
+    50%{
+
+        transform:translateX(-50%) translateY(-18px) rotate(2deg);
+
+    }
+}
+
+/* =====================================================
+   CONSTELLATION
+===================================================== */
+
+.constellation{
+
+    position:relative;
+
+    width:min(850px,94vw);
+
+    height:520px;
+
+    margin:55px auto 0;
+
+    border-radius:35px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(100,170,255,.08);
+
+    background:
+    radial-gradient(
+        circle at center,
+        rgba(30,110,220,.12),
+        transparent 60%
+    );
+}
+
+.constellation svg{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+
+    height:100%;
+
+    pointer-events:none;
+}
+
+.constellation line{
+
+    stroke:#4b9aff;
+
+    stroke-width:1;
+
+    opacity:.25;
+}
+
+.cstar{
+
+    position:absolute;
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    box-shadow:
+    0 0 8px #fff,
+    0 0 22px #48a5ff,
+    0 0 45px #1470ff;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    animation:cstarPulse 2s infinite alternate;
+
+    z-index:5;
+}
+
+.cstar:hover{
+
+    transform:scale(1.8);
+
+}
+
+@keyframes cstarPulse{
+
+    from{opacity:.6}
+
+    to{opacity:1}
+}
+
+.star-message{
+
+    min-height:120px;
+
+    max-width:680px;
+
+    margin:30px auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:30px;
+
+    color:#d9edff;
+
+    line-height:1.5;
+
+}
+
+.message-animation{
+
+    animation:messageIn .7s ease;
+}
+
+@keyframes messageIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+}
+
+/* =====================================================
+   MOON
+===================================================== */
+
+.moon{
+
+    width:260px;
+
+    height:260px;
+
+    border-radius:50%;
+
+    margin:0 auto 55px;
+
+    background:
+
+    radial-gradient(
+        circle at 32% 28%,
+        #fff,
+        #d8efff 30%,
+        #91bde8 62%,
+        #345c8c
+    );
+
+    box-shadow:
+
+    0 0 50px rgba(100,185,255,.35),
+
+    0 0 130px rgba(40,110,255,.15);
+
+    animation:moonPulse 5s ease-in-out infinite alternate;
+}
+
+@keyframes moonPulse{
+
+    from{
+
+        box-shadow:
+        0 0 35px rgba(100,185,255,.25),
+        0 0 80px rgba(40,110,255,.1);
+
+    }
+
+    to{
+
+        box-shadow:
+        0 0 65px rgba(100,185,255,.55),
+        0 0 150px rgba(40,110,255,.22);
+
+    }
+}
+
+/* =====================================================
+   QUOTE
+===================================================== */
+
+.quote{
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:clamp(42px,6vw,75px);
+
+    font-weight:300;
+
+    line-height:1.15;
+}
+
+.blue{
+
+    color:#68b9ff;
+
+    text-shadow:
+    0 0 25px rgba(60,150,255,.4);
+}
+
+/* =====================================================
+   FINAL HEART
+===================================================== */
+
+.heart-container{
+
+    width:270px;
+
+    height:240px;
+
+    position:relative;
+
+    margin:0 auto 60px;
+}
+
+.heart-dot{
+
+    position:absolute;
+
+    width:5px;
+
+    height:5px;
+
+    border-radius:50%;
+
+    background:#9bd9ff;
+
+    box-shadow:
+    0 0 8px #67bbff,
+    0 0 20px #287dff;
+
+    opacity:0;
+
+    animation:heartReveal 3s ease forwards;
+}
+
+@keyframes heartReveal{
+
+    0%{
+
+        opacity:0;
+
+        transform:scale(.1);
+
+    }
+
+    50%{
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+}
+
+.final-title{
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:clamp(38px,6vw,70px);
+
+    line-height:1.2;
+
+    font-weight:300;
+}
+
+.signature{
+
+    margin-top:40px;
+
+    color:#6e9dcc;
+
+    letter-spacing:4px;
+
+    font-size:10px;
+}
+
+/* =====================================================
+   MUSIC
+===================================================== */
+
+.music{
+
+    position:fixed;
+
+    right:22px;
+
+    bottom:22px;
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(100,180,255,.4);
+
+    background:rgba(2,15,30,.8);
+
+    color:#bfe7ff;
+
+    cursor:pointer;
+
+    z-index:30;
+
+    backdrop-filter:blur(12px);
+
+    transition:.3s;
+}
+
+.music:hover{
+
+    transform:scale(1.1);
+
+    box-shadow:0 0 25px rgba(50,140,255,.3);
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px){
+
+    .constellation{
+
+        height:430px;
+
+    }
+
+    .moon{
+
+        width:190px;
+
+        height:190px;
+
+    }
+
+    .text{
+
+        font-size:14px;
+
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="space"></div>
+<div class="aurora"></div>
+
+<div class="shooting"></div>
+<div class="shooting" style="animation-delay:4s"></div>
+
+
+<!-- =================================================
+     INTRO
+================================================= -->
+
+<section id="intro">
+
+<div class="intro-content">
+
+<div class="kicker">
+A LITTLE UNIVERSE
+</div>
+
+<h1 class="logo-name">
+Ishu
+</h1>
+
+<p class="intro-sub">
+
+I could have just written a message...<br>
+
+but I thought making a tiny universe<br>
+
+would be more fun.
+
+</p>
+
+<button class="start" onclick="startExperience()">
+
+ENTER MY UNIVERSE ✦
+
+</button>
+
+</div>
+
+<div class="scroll">
+SCROLL
+</div>
+
+</section>
+
+
+<!-- =================================================
+     MAIN
+================================================= -->
+
+<main id="universe">
+
+
+<!-- INTRO STORY -->
+
+<section class="section">
+
+<div class="content">
+
+<div class="kicker">
+WELCOME
+</div>
+
+<div class="butterfly-wrap">
+
+<div class="butterfly">
+
+<div class="wing left-wing"></div>
+
+<div class="wing right-wing"></div>
+
+<div class="body"></div>
+
+</div>
+
+</div>
+
+<h2 class="title">
+Some people are stars.
+</h2>
+
+<p class="text">
+
+And then there are people who somehow make
+everything around them feel a little brighter.
+
+<br><br>
+
+I think you're one of those people.
+
+</p>
+
+</div>
+
+</section>
+
+
+<!-- =================================================
+     CONSTELLATION
+================================================= -->
+
+<section class="section">
+
+<div class="content">
+
+<div class="kicker">
+A FEW LITTLE THOUGHTS
+</div>
+
+<h2 class="title">
+Find the stars.
+</h2>
+
+<p class="text">
+Each star has something I wanted to tell you.
+</p>
+
+
+<div class="constellation">
+
+<svg viewBox="0 0 850 520">
+
+<line x1="150" y1="120" x2="390" y2="250"/>
+<line x1="390" y1="250" x2="620" y2="110"/>
+<line x1="390" y1="250" x2="680" y2="370"/>
+<line x1="390" y1="250" x2="220" y2="390"/>
+<line x1="220" y1="390" x2="500" y2="430"/>
+
+</svg>
+
+
+<div class="cstar"
+style="left:17%;top:22%"
+onclick="message(0)">
+</div>
+
+<div class="cstar"
+style="left:45%;top:45%"
+onclick="message(1)">
+</div>
+
+<div class="cstar"
+style="left:72%;top:20%"
+onclick="message(2)">
+</div>
+
+<div class="cstar"
+style="left:79%;top:70%"
+onclick="message(3)">
+</div>
+
+<div class="cstar"
+style="left:25%;top:73%"
+onclick="message(4)">
+</div>
+
+<div class="cstar"
+style="left:58%;top:82%"
+onclick="message(5)">
+</div>
+
+</div>
+
+
+<div id="starMessage" class="star-message">
+
+✦ Tap a star
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =================================================
+     MOON
+================================================= -->
+
+<section class="section">
+
+<div class="content">
+
+<div class="moon"></div>
+
+<div class="kicker">
+ONE LITTLE THING
+</div>
+
+<h2 class="quote">
+
+Your <span class="blue">smile</span>
+has a strange kind of magic.
+
+</h2>
+
+<p class="text">
+
+I don't know how you do it,
+
+but seeing you smile can make
+an ordinary moment feel a little more special.
+
+<br><br>
+
+And honestly...
+
+I really like seeing it.
+
+</p>
+
+</div>
+
+</section>
+
+
+<!-- =================================================
+     PEACE
+================================================= -->
+
+<section class="section">
+
+<div class="content">
+
+<div class="kicker">
+SOMETHING I NOTICED
+</div>
+
+<h2 class="title">
+
+Talking to you feels different.
+
+</h2>
+
+<p class="text">
+
+There are moments when I talk to you
+or simply see you,
+
+and somehow the things bothering me
+don't feel quite as heavy anymore.
+
+<br><br>
+
+You have this peaceful little effect on me
+that I can't really explain.
+
+<br><br>
+
+I just know that I like it.
+
+</p>
+
+</div>
+
+</section>
+
+
+<!-- =================================================
+     FINAL
+================================================= -->
+
+<section class="section">
+
+<div class="content">
+
+<div class="heart-container" id="heart"></div>
+
+<div class="kicker">
+ONE LAST THING
+</div>
+
+<h2 class="final-title">
+
+I didn't make this
+because I had to.
+
+<br><br>
+
+I made it because
+you're special to me.
+
+<br><br>
+
+I just wanted
+to make you smile. 💙
+
+</h2>
+
+<div class="signature">
+
+MADE WITH A LITTLE EFFORT · FOR ISHU
+
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<!-- MUSIC BUTTON -->
+
+<button class="music" onclick="toggleMusic()">
+♪
+</button>
+
+
+<!-- =================================================
+     MUSIC
+
+     Put a legally usable music.mp3 file
+     in the same folder as this HTML.
+================================================= -->
+
+<audio id="bgMusic" loop>
+
+<source src="music.mp3" type="audio/mpeg">
+
+</audio>
+
+
+<script>
+
+/* =====================================================
+   CREATE STARS
+===================================================== */
+
+for(let i=0;i<140;i++){
+
+    const star=document.createElement("div");
+
+    star.className="star";
+
+    star.style.left=
+        Math.random()*100+"%";
+
+    star.style.top=
+        Math.random()*100+"%";
+
+    star.style.animationDelay=
+        Math.random()*4+"s";
+
+    document.body.appendChild(star);
+
+}
+
+
+/* =====================================================
+   CREATE PARTICLES
+===================================================== */
+
+for(let i=0;i<30;i++){
+
+    const particle=
+        document.createElement("div");
+
+    particle.className="particle";
+
+    particle.style.left=
+        Math.random()*100+"%";
+
+    particle.style.animationDuration=
+        8+Math.random()*12+"s";
+
+    particle.style.animationDelay=
+        Math.random()*10+"s";
+
+    document.body.appendChild(particle);
+
+}
+
+
+/* =====================================================
+   START EXPERIENCE
+===================================================== */
+
+function startExperience(){
+
+    const intro=
+        document.getElementById("intro");
+
+    const universe=
+        document.getElementById("universe");
+
+    const music=
+        document.getElementById("bgMusic");
+
+    intro.style.opacity="0";
+
+    intro.style.transform="scale(1.06)";
+
+    /*
+       Browser music autoplay restrictions:
+       because the user clicked this button,
+       music can normally start here.
+    */
+
+    music.play().catch(()=>{});
+
+    setTimeout(()=>{
+
+        intro.style.display="none";
+
+        universe.style.display="block";
+
+        window.scrollTo(0,0);
+
+    },1200);
+
+}
+
+
+/* =====================================================
+   STAR MESSAGES
+===================================================== */
+
+const messages=[
+
+"Your smile is genuinely one of my favourite things about you. 💙",
+
+"There is something really special about your vibe... something difficult to explain but very easy to notice.",
+
+"I don't know how you do it, but talking to you somehow makes everything feel a little better.",
+
+"You have this calm, peaceful presence that I really like.",
+
+"Out of all the little things about you, your smile somehow stays in my mind the longest.",
+
+"Maybe you don't realize it... but you can make an ordinary day feel a little less ordinary."
+
+];
+
+
+function message(index){
+
+    const box=
+        document.getElementById("starMessage");
+
+    box.classList.remove(
+        "message-animation"
+    );
+
+    void box.offsetWidth;
+
+    box.innerHTML=
+        messages[index];
+
+    box.classList.add(
+        "message-animation"
+    );
+
+}
+
+
+/* =====================================================
+   HEART CONSTELLATION
+===================================================== */
+
+const heart=
+    document.getElementById("heart");
+
+for(let t=0;t<Math.PI*2;t+=0.10){
+
+    const x=
+        16*Math.pow(Math.sin(t),3);
+
+    const y=
+        13*Math.cos(t)
+        -5*Math.cos(2*t)
+        -2*Math.cos(3*t)
+        -Math.cos(4*t);
+
+    const dot=
+        document.createElement("div");
+
+    dot.className="heart-dot";
+
+    dot.style.left=
+        (135+x*6)+"px";
+
+    dot.style.top=
+        (120-y*6)+"px";
+
+    dot.style.animationDelay=
+        Math.random()*2.5+"s";
+
+    heart.appendChild(dot);
+
+}
+
+
+/* =====================================================
+   MUSIC
+===================================================== */
+
+function toggleMusic(){
+
+    const music=
+        document.getElementById("bgMusic");
+
+    const button=
+        document.querySelector(".music");
+
+    if(music.paused){
+
+        music.play().catch(()=>{});
+
+        button.innerHTML="❚❚";
+
+    }else{
+
+        music.pause();
+
+        button.innerHTML="♪";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
+```
